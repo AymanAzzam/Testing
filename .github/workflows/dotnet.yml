@@ -2,7 +2,7 @@ name: .NET
 
 on:
   push:
-    branches: [ main ]
+    branches: [ build_test_pipeline ]
   pull_request:
     branches: [ main ]
 
