@@ -106,16 +106,7 @@ namespace BugSpark
             {
                 Assert.AreEqual(e.Message, "There are no items in the stack.");
             }
-            
-            try
-            {
-                stack.Peek();
-                Assert.Fail("Stack didn't return exception on Peek() although the stack is empty");
-            }
-            catch (InvalidOperationException e)
-            {
-                Assert.AreEqual(e.Message, "There are no items in the stack.");
-            }
+            Assert.Throws<InvalidOperationException>(delegate { stack.Peek(); });
         }
         
         [Test]
