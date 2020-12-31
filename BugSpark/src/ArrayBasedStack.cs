@@ -83,7 +83,14 @@ namespace BugSpark
         /// Returns the item at the top of the <see cref="ArrayBasedStack{T}"/> without removing it.
         /// </summary>
         /// <returns>The item at the top of the <see cref="ArrayBasedStack{T}"/>.</returns>
-        public T Peek() => stack[count - 1];
+        public T Peek()
+        {
+            if (count == 0)
+            {
+                throw new InvalidOperationException("There are no items in the stack."); 
+            }
+            return stack[count - 1];
+        }
 
         /// <summary>
         /// Removes and returns the item at the top of the <see cref="ArrayBasedStack{T}"/>.
@@ -91,6 +98,10 @@ namespace BugSpark
         /// <returns>The item removed from the top of the <see cref="ArrayBasedStack{T}"/>.</returns>
         public T Pop()
         {
+            if (count == 0)
+            {
+                throw new InvalidOperationException("There are no items in the stack."); 
+            }
             var item = stack[count - 1];
             count = count - 1;
             return item;
