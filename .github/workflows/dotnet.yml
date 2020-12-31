@@ -18,14 +18,13 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Restore dependencies
-      run: dotnet restore
-      working-directory: ./BugSpark/BugSpark.csproj
+      run: dotnet restore BugSpark/BugSpark.csproj
       
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ./BugSpark
+      working-directory: BugSpark/
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ./BugSpark
+      working-directory: BugSpark/
       
