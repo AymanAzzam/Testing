@@ -48,7 +48,8 @@ namespace BugSpark
                     for (int j = 0; j < w.Length; j++)
                     {
                         var w_c = w[j];
-                        for (var c = 'a'; c <= 'z'; c++)
+                        for (var c = '!'; c <= 'z'; c++)
+                        //for (var c = 'a'; c <= 'z'; c++)
                         {
                             if (c == w_c) continue;
                             chArr[j] = c;
