@@ -73,7 +73,7 @@ namespace BugSpark
         public void Peek_Branch_Test_1()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(1);
-            Assert.That(() => queue.Dequeue(),
+            Assert.That(() => queue.Peek(),
                 Throws.TypeOf<InvalidOperationException>()
                     .With.Message.EqualTo("There are no items in the queue."));
         }
