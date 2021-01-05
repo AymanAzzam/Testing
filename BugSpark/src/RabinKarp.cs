@@ -21,6 +21,8 @@ namespace BugSpark
         /// <returns>List of starting indices of the pattern in the text.</returns>
         public static List<int> FindAllOccurrences(string t, string p)
         {
+            if (String.IsNullOrEmpty(t) || String.IsNullOrEmpty(p)) //Fix Index Out of Range and Null
+                return new List<int>();
             // Prime number
             const ulong P = 65537;
 
@@ -52,27 +54,27 @@ namespace BugSpark
 
             // In the next step you iterate over the text with the pattern.
             List<int> occurences = new List<int>();
-            for (int i = 0; i + p.Length - 1 < t.Length; i++)
+            for (int m = 0; m + p.Length - 1 < t.Length; m++)
             {
                 // In each step you calculate the hash value of the substring to be tested.
                 // By storing the hash values of the letters as a prefixes you can do this in constant time.
-                ulong current_hash = (hash_t[i + p.Length] + M - hash_t[i]) % M;
+                ulong current_hash = (hash_t[m + p.Length] + M - hash_t[m]) % M;
 
                 // Now you can compare the hash value of the substring with the product of the hash value of the pattern and p_pow[i].
-                if (current_hash == hash_s * p_pow[i] % M)
+                if (current_hash == hash_s * p_pow[m] % M)
                 {
                     // If the hash values are identical, do a double-check in case a hash collision occurs.
-                    int j = 0;
-                    while (j < p.Length && t[i + j] == p[j])
+                    int n = 0;
+                    while (n < p.Length && t[m + n] == p[n])
                     {
-                        ++j;
+                        ++n;
                     }
 
-                    if (j == p.Length)
+                    if (n == p.Length)
                     {
                         // If the hash values are identical and the double-check passes, a substring was found that matches the pattern.
                         // In this case you add the index i to the list of occurences.
-                        occurences.Add(i);
+                        occurences.Add(m);
                     }
                 }
             }
