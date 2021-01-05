@@ -129,5 +129,85 @@ namespace BugSpark
             Assert.AreEqual(0,algo.LadderLength(beginWord,endWord,wordList));
         }
 
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_PPC_1()
+        {
+            int[] nums = null;
+            int target = 10;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_PPC_2()
+        {
+            int[] nums = new int[4] {1, 2, 1, 3};
+            int target = 10;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_PPC_3()
+        {
+            int[] nums = new int[2] {1, 1};
+            int target = 5;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_PPC_4()
+        {
+            int[] nums = new int[2] {1, 5};
+            int target = 6;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {0, 1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_ACoC_2()
+        {
+            int[] nums = null;
+            int target = 6;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_ACoC_4()
+        {
+            int[] nums = new int[0] {};
+            int target = 6;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_ACoC_6()
+        {
+            int[] nums = new int[1] {1};
+            int target = 6;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_ACoC_7()
+        {
+            int[] nums = new int[4] {1, 2, 3, 4};
+            int target = 10;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {-1, -1});
+        }
+        
+        [Test, Author("Khaled Moataz")]
+        public void TwoSum_ACoC_8()
+        {
+            int[] nums = new int[4] {1, 2, 3, 4};
+            int target = 6;
+            var result = algo.TwoSum(nums, target);
+            Assert.AreEqual(result, new int[2] {1, 3});
+        }
     }
 }

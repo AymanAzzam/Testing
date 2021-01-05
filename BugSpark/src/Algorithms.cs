@@ -67,5 +67,26 @@ namespace BugSpark
 
             return 0;
         }
+        
+        public int[] TwoSum(int[] nums, int target) {
+            int [] ret = {-1, -1};
+            if (nums == null || nums.Length < 2) return ret;
+        
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            for (int i=0; i<nums.Length; i++)
+            {
+                if (dict.ContainsKey(target - nums[i]))
+                {
+                    ret[0] = dict[target - nums[i]];
+                    ret[1] = i;
+                    break;
+                }
+                if (!dict.ContainsKey(nums[i]))
+                {
+                    dict.Add(nums[i], i);
+                }
+            }
+            return ret;
+        }
     }
 }
