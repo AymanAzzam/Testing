@@ -154,6 +154,10 @@ namespace BugSpark
         /// <param name="otherMaxHeap">The other <see cref="BinaryMaxHeap{T}"/> used for merging.</param>
         public void Merge(BinaryMaxHeap<T> otherMaxHeap)
         {
+            /*
+             * Fix: check if otherMaxHeap is null before using it
+             */
+            // if (otherMaxHeap == null) throw new ArgumentNullException(nameof(otherMaxHeap));
             for (int i = 0; i < otherMaxHeap.Count; i++)
             {
                 Add(otherMaxHeap.array[i]);
