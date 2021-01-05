@@ -15,35 +15,35 @@ namespace BugSpark
             algo = new Algorithms();
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LongestMountainTest1()  //Prime Path Coverage 1
         {
             int[] a = {50, 40, 30, 35, 36};
             Assert.AreEqual(0,algo.LongestMountain(a));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LongestMountainTest2()  //Prime Path Coverage 2
         {
             int[] a = {30, 40, 35};
             Assert.AreEqual(3,algo.LongestMountain(a));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LongestMountainTest3()  //Prime Path Coverage 3
         {
             int[] a = {};
             Assert.AreEqual(0,algo.LongestMountain(a));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LongestMountainTest4()  //Prime Path Coverage 4
         {
             int[] a = {5};
             Assert.AreEqual(0,algo.LongestMountain(a));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LadderLengthTest1()  //All Combination Coverage 1
         {
             List<String> wordList = new List<string>();
@@ -64,7 +64,7 @@ namespace BugSpark
             // The Fault in line 51, it should be c = '!' instead of c = 'a'
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LadderLengthTest2()  //All Combination Coverage 2
         {
             List<String> wordList = new List<string>();
@@ -81,7 +81,7 @@ namespace BugSpark
             Assert.AreEqual(0,algo.LadderLength(beginWord,endWord,wordList));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LadderLengthTest3()  //All Combination Coverage 3
         {
             List<String> wordList = new List<string>();
@@ -98,7 +98,7 @@ namespace BugSpark
             Assert.AreEqual(0,algo.LadderLength(beginWord,endWord,wordList));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LadderLengthTest4()  //All Combination Coverage 4
         {
             List<String> wordList = new List<string>();
@@ -113,7 +113,7 @@ namespace BugSpark
             Assert.AreEqual(0,algo.LadderLength(beginWord,endWord,wordList));
         }
         
-        [Test]
+        [Test, Author("Ayman Azzam")]
         public void LadderLengthTest5()  //All Combination Coverage 5
         {
             List<String> wordList = new List<string>();
