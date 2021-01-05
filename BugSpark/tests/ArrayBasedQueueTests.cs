@@ -7,54 +7,53 @@ namespace BugSpark
     public class ArrayBasedQueueTests
     {
 
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Enqueue_Branch_Test_1()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(1);
             queue.Enqueue(1);
-            Assert.AreEqual(queue.Peek(), 1);
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(queue.Peek(), 1);
+                Assert.IsTrue(queue.IsFull());
+                Assert.IsFalse(queue.IsEmpty());
+            });
+            
         }
 
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Enqueue_Branch_Test_2()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(2);
             queue.Enqueue(1);
-            Assert.AreEqual(queue.Peek(), 1);
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual(queue.Peek(), 1);
+                Assert.IsFalse(queue.IsFull());
+                Assert.IsFalse(queue.IsEmpty());
+            });
         }
         
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Enqueue_Branch_Test_3()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(1);
             queue.Enqueue(1);
-            try
-            {
-                queue.Enqueue(2);
-                Assert.Fail("Enqueue didn't return exception although the queue is full");
-            }
-            catch (InvalidOperationException e)
-            {
-                Assert.AreEqual(e.Message, "The queue has reached its capacity.");
-            }
+            Assert.That(() => queue.Enqueue(1), 
+                Throws.TypeOf<InvalidOperationException>()
+                    .With.Message.EqualTo("The queue has reached its capacity."));
         }
-        
-        [Test]
+
+        [Test, Author("Ayman Elakwah")]
         public void Dequeue_Branch_Test_1()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(10);
-            try
-            {
-                queue.Dequeue();
-                Assert.Fail("Dequeue didn't return exception although the queue is empty");
-            }
-            catch (InvalidOperationException e)
-            {
-                Assert.AreEqual(e.Message, "There are no items in the queue.");
-            }
+            Assert.That(() => queue.Dequeue(),
+                Throws.TypeOf<InvalidOperationException>()
+                    .With.Message.EqualTo("There are no items in the queue."));
         }
         
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Dequeue_Branch_Test_2()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(10);
@@ -62,7 +61,7 @@ namespace BugSpark
             Assert.AreEqual(queue.Dequeue(), 23);
         }
         
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Dequeue_Branch_Test_3()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(1);
@@ -70,22 +69,16 @@ namespace BugSpark
             Assert.AreEqual(queue.Dequeue(), 23);
         }
         
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Peek_Branch_Test_1()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(1);
-            try
-            {
-                queue.Peek();
-                Assert.Fail("Peek didn't return exception although the queue is empty");
-            }
-            catch (InvalidOperationException e)
-            {
-                Assert.AreEqual(e.Message, "There are no items in the queue.");
-            }
+            Assert.That(() => queue.Dequeue(),
+                Throws.TypeOf<InvalidOperationException>()
+                    .With.Message.EqualTo("There are no items in the queue."));
         }
 
-        [Test]
+        [Test, Author("Ayman Elakwah")]
         public void Clear_Node_Test_1()
         {
             ArrayBasedQueue<int> queue = new ArrayBasedQueue<int>(10);
@@ -93,7 +86,15 @@ namespace BugSpark
             queue.Enqueue(2);
             
             queue.Clear();
-            Assert.AreEqual(queue.IsEmpty(), true);
+            
+            Assert.Multiple(() =>
+            {
+                Assert.IsTrue(queue.IsEmpty());
+                Assert.IsFalse(queue.IsFull());
+                Assert.That(() => queue.Dequeue(),
+                    Throws.TypeOf<InvalidOperationException>()
+                        .With.Message.EqualTo("There are no items in the queue."));
+            });
 
         }
 
