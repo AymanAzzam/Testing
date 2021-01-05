@@ -13,7 +13,7 @@ namespace BugSpark
         /// <summary>
         /// The backing <see cref="ArrayList{T}"/> containing the elements of the <see cref="BinaryMaxHeap{T}"/>.
         /// </summary>
-        internal ArrayList<T> array;
+        public ArrayList<T> array { get; internal set; }
 
         /// <summary>
         /// The comparer of the elements in the <see cref="BinaryMaxHeap{T}"/>.
@@ -158,6 +158,7 @@ namespace BugSpark
              * Fix: check if otherMaxHeap is null before using it
              */
             // if (otherMaxHeap == null) throw new ArgumentNullException(nameof(otherMaxHeap));
+            
             for (int i = 0; i < otherMaxHeap.Count; i++)
             {
                 Add(otherMaxHeap.array[i]);
