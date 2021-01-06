@@ -48,13 +48,14 @@ namespace BugSpark.Tests
         {
             Assert.DoesNotThrow(delegate
             {
-                var binaryMaxHeap = new BinaryMaxHeap<int>(0);
+                new BinaryMaxHeap<int>(0);
             });
         }
 
         [Test]
         public void Constructor_CapacityOutOfBounds()
         {
+            // Test Code
             Assert.Throws<ArgumentOutOfRangeException>(delegate
             {
                 new BinaryMaxHeap<int>(-1, Comparer<int>.Default);
@@ -90,29 +91,41 @@ namespace BugSpark.Tests
             var tempBinaryMaxHeap = new BinaryMaxHeap<int>(4);
             var list = new List<int>() {1, 4, 3, 5};
             tempBinaryMaxHeap.Heapify(list);
-            Assert.AreEqual(4, tempBinaryMaxHeap.Count, "Count before");
-            Assert.AreEqual(4, tempBinaryMaxHeap.array.Capacity, "Capacity before");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(4, tempBinaryMaxHeap.Count, "Count before");
+                Assert.AreEqual(4, tempBinaryMaxHeap.array.Capacity, "Capacity before");
+            });
             var before = tempBinaryMaxHeap.array.Capacity;
 
             tempBinaryMaxHeap.Add(10);
             
-            Assert.Greater(tempBinaryMaxHeap.Count, before, "Count after");
-            Assert.Greater(tempBinaryMaxHeap.array.Capacity, before, "Capacity after");
+            Assert.Multiple(delegate
+            {
+                Assert.Greater(tempBinaryMaxHeap.Count, before, "Count after");
+                Assert.Greater(tempBinaryMaxHeap.array.Capacity, before, "Capacity after");
+            });
         }
 
         [Test]
         public void Add_ZeroCapacity()
         {
             var tempBinaryMaxHeap = new BinaryMaxHeap<int>(0);
-            Assert.IsTrue(tempBinaryMaxHeap.IsEmpty);
-            Assert.Zero(tempBinaryMaxHeap.Count, "Count before");
-            Assert.Zero(tempBinaryMaxHeap.array.Capacity, "Capacity before");
+            Assert.Multiple(delegate
+            {
+                Assert.IsTrue(tempBinaryMaxHeap.IsEmpty);
+                Assert.Zero(tempBinaryMaxHeap.Count, "Count before");
+                Assert.Zero(tempBinaryMaxHeap.array.Capacity, "Capacity before");
+            });
 
             tempBinaryMaxHeap.Add(10);
             
-            Assert.IsFalse(tempBinaryMaxHeap.IsEmpty);
-            Assert.NotZero(tempBinaryMaxHeap.Count, "Count after");
-            Assert.NotZero(tempBinaryMaxHeap.array.Capacity, "Capacity after");
+            Assert.Multiple(delegate
+            {
+                Assert.IsFalse(tempBinaryMaxHeap.IsEmpty);
+                Assert.NotZero(tempBinaryMaxHeap.Count, "Count after");
+                Assert.NotZero(tempBinaryMaxHeap.array.Capacity, "Capacity after");
+            });
         }
 
         [Test]
@@ -191,13 +204,19 @@ namespace BugSpark.Tests
             _binaryMaxHeap.Add(5);
             _binaryMaxHeap.Add(9);
             
-            Assert.AreEqual(2, _binaryMaxHeap.Count, "Count before");
-            Assert.AreEqual(9, _binaryMaxHeap.PeekMax(), "Max before");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(2, _binaryMaxHeap.Count, "Count before");
+                Assert.AreEqual(9, _binaryMaxHeap.PeekMax(), "Max before");
+            });
             
             _binaryMaxHeap.RemoveMax();
             
-            Assert.AreEqual(1, _binaryMaxHeap.Count, "Count After");
-            Assert.AreEqual(5, _binaryMaxHeap.PeekMax(), "Max After");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(1, _binaryMaxHeap.Count, "Count After");
+                Assert.AreEqual(5, _binaryMaxHeap.PeekMax(), "Max After");
+            });
         }
 
         [Test]
@@ -215,13 +234,19 @@ namespace BugSpark.Tests
             _binaryMaxHeap.Add(5);
             _binaryMaxHeap.Add(9);
             
-            Assert.AreEqual(9, _binaryMaxHeap.PeekMax(), "Max before");
-            Assert.AreEqual(2, _binaryMaxHeap.Count, "Count before");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(9, _binaryMaxHeap.PeekMax(), "Max before");
+                Assert.AreEqual(2, _binaryMaxHeap.Count, "Count before");
+            });
             
             Assert.AreEqual(9, _binaryMaxHeap.PopMax(), "Returned max");
             
-            Assert.AreEqual(1, _binaryMaxHeap.Count, "Count before");
-            Assert.AreEqual(5, _binaryMaxHeap.PeekMax(), "Max After");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(1, _binaryMaxHeap.Count, "Count before");
+                Assert.AreEqual(5, _binaryMaxHeap.PeekMax(), "Max After");
+            });
         }
 
         [Test]
@@ -255,27 +280,37 @@ namespace BugSpark.Tests
             var list = new List<int>();
             _binaryMaxHeap.Heapify(list);
             
-            Assert.Zero(_binaryMaxHeap.Count, "Count");
-            Assert.Throws<InvalidOperationException>(delegate
+            Assert.Multiple(delegate
             {
-                _binaryMaxHeap.PeekMax();
-            }, "Max");
+                Assert.Zero(_binaryMaxHeap.Count, "Count");
+                Assert.Throws<InvalidOperationException>(delegate
+                {
+                    _binaryMaxHeap.PeekMax();
+                }, "Max");
+            });
         }
 
         [Test]
         public void Heapify_NotEmpty()
         {
-            Assert.Zero(_binaryMaxHeap.Count, "Count before");
-            Assert.Throws<InvalidOperationException>(delegate
+            Assert.Multiple(delegate
             {
-                _binaryMaxHeap.PeekMax();
-            }, "Max before");
+                Assert.Zero(_binaryMaxHeap.Count, "Count before");
+                Assert.Throws<InvalidOperationException>(delegate
+                {
+                    _binaryMaxHeap.PeekMax();
+                }, "Max before");
+            });
+            
             
             var list = new List<int>() { -1, 8, 5, 21, 4 };
             _binaryMaxHeap.Heapify(list);
             
-            Assert.AreEqual(5, _binaryMaxHeap.Count, "Count after");
-            Assert.AreEqual(21, _binaryMaxHeap.PeekMax(), "Max after");
+            Assert.Multiple(delegate
+            {
+                Assert.AreEqual(5, _binaryMaxHeap.Count, "Count after");
+                Assert.AreEqual(21, _binaryMaxHeap.PeekMax(), "Max after");
+            });
         }
 
         [Test]
